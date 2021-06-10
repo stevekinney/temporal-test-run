@@ -5,6 +5,9 @@ const connection = new Connection();
 const createWorkflow = async (number) => {
   const workflow = connection.workflow('example', {
     taskQueue: 'double-square',
+    retryPolicy: {
+      maximumAttempts: 20,
+    },
   });
 
   const result = await workflow.start(number);
